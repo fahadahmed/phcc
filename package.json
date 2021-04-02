@@ -1,0 +1,9 @@
+{
+  "name": "phcc",
+  "version": "1.0.0",
+  "description": "Power House Cricket Club App",
+  "main": "index.js",
+  "repository": "https://github.com/fahadahmed/phcc.git",
+  "author": "Fahad Ahmed <contact@fhdamd.dev>",
+  "license": "MIT"
+}
