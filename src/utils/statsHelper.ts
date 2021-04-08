@@ -31,3 +31,28 @@ export const getRunsAndWickets = (data: TeamData[], grade: string) => {
   }
   return [totalRuns, totalWickets];
 };
+
+export const getWinsStats = (data: TeamData[], grade: string) => {
+  
+  let totalWins, homeGames, awayGames, homeWins, awayWins;
+  
+  if (grade === 'All') {
+    totalWins = data.filter((item) => item.result === 'Won');
+    homeGames = data.filter((item) => item.home_game);
+    awayGames = data.filter((item) => !item.home_game);
+  } else {
+    totalWins = data.filter((item) => item.result === 'Won' && item.team === grade);
+    homeGames = data.filter((item) => item.home_game && item.team === grade);
+    awayGames = data.filter((item) => !item.home_game && item.team === grade);
+  }
+  homeWins = homeGames.filter((item) => item.result === 'Won');
+  awayWins = awayGames.filter((item) => item.result === 'Won');
+
+  return { 
+    totalWins: totalWins.length, 
+    homeGames: homeGames.length,
+    awayGames: awayGames.length,
+    homeWins: homeWins.length,
+    awayWins: awayWins.length
+  };
+};
