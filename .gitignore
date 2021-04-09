@@ -3,3 +3,4 @@ public/
 data/
 
 yarn-error.log
+.DS_store

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { getTotalGames, getTotalWins, getRunsAndWickets, getWinsStats } from '../utils/statsHelper';
+import { getTotalGames, getRunsAndWickets, getWinsStats } from '../utils/statsHelper';
 import { initialTeamData, initialClubData, teams } from '../utils/constants';
 import PHCCApiClient from '../utils/ApiClient';
 
@@ -13,10 +13,12 @@ function App(): JSX.Element {
     let teamData = PHCCApiClient.fetchTeamOverallDetails();
     let clubData = PHCCApiClient.fetchClubOverallDetails();
     let totalGames = getTotalGames(teamData, selectedTeam);
-    let wins = getTotalWins(teamData, selectedTeam);
     let [totalRuns, totalWickets] = getRunsAndWickets(teamData, selectedTeam);
 
-    let { totalWins, homeGames, awayGames, homeWins, awayWins } = getWinsStats(teamData, selectedTeam);
+    let { totalWins, homeGames, awayGames, homeWins, awayWins } = getWinsStats(
+      teamData,
+      selectedTeam,
+    );
     console.log(totalWins, homeGames, awayGames, homeWins, awayWins);
 
     setTeamStats({
@@ -57,7 +59,9 @@ function App(): JSX.Element {
         <tbody>
           {clubStats.standings.map((grade, i) => (
             <tr key={i}>
-              <td><strong>{grade.team}</strong> <small>{grade.alias}</small></td>
+              <td>
+                <strong>{grade.team}</strong> <small>{grade.alias}</small>
+              </td>
               <td>{grade.standing}</td>
             </tr>
           ))}
@@ -76,14 +80,20 @@ function App(): JSX.Element {
       <p>Team: {selectedTeam}</p>
       <p>Total Matches Played: {teamStats.totalPlayed}</p>
       <p>Total Wins: {teamStats.totalWins}</p>
-      <p>Home Wins: {teamStats.homeWins} out of {teamStats.homeGames}</p>
-      <p>Away Wins: {teamStats.awayWins} out of {teamStats.awayGames}</p>
-      <p><strong>Win Rate</strong></p>
+      <p>
+        Home Wins: {teamStats.homeWins} out of {teamStats.homeGames}
+      </p>
+      <p>
+        Away Wins: {teamStats.awayWins} out of {teamStats.awayGames}
+      </p>
+      <p>
+        <strong>Win Rate</strong>
+      </p>
       <p>
         Overall: {((teamStats.totalWins / teamStats.totalPlayed) * 100).toFixed(2)}
-        <br/>
+        <br />
         Home: {((teamStats.homeWins / teamStats.homeGames) * 100).toFixed(2)}
-        <br/>
+        <br />
         Away: {((teamStats.awayWins / teamStats.awayGames) * 100).toFixed(2)}
       </p>
       <p>Total Runs Scored: {teamStats.totalRunsScored}</p>

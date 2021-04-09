@@ -14,9 +14,7 @@ export const initialClubData = {
   teamsInFinals: 0,
   teamsInGF: 0,
   premierships: 0,
-  standings: [
-    { team: '', alias: '', standing: '' }
-  ]
-}
+  standings: [{ team: '', alias: '', standing: '' }],
+};
 
 export const teams = ['All', 'B Grade', 'C Grade', 'C Sunday', 'C North'];
