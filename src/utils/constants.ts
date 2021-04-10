@@ -5,6 +5,10 @@ export const initialTeamData = {
   awayGames: 0,
   homeWins: 0,
   awayWins: 0,
+  batFirstGames: 0,
+  bowlFirstGames: 0,
+  batFirstWins: 0,
+  bowlFirstWins: 0,
   totalRunsScored: 0,
   totalWicketsTaken: 0,
 };

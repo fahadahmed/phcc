@@ -1,3 +1,6 @@
+import moment from 'moment';
+import _, { uniq } from 'lodash';
+
 import { TeamData } from '../models/TeamData';
 
 export const getTotalGames = (data: TeamData[], grade: string): number => {
@@ -33,19 +36,33 @@ export const getRunsAndWickets = (data: TeamData[], grade: string) => {
 };
 
 export const getWinsStats = (data: TeamData[], grade: string) => {
-  let totalWins, homeGames, awayGames, homeWins, awayWins;
+  let totalWins,
+    homeGames,
+    awayGames,
+    homeWins,
+    awayWins,
+    batFirstGames,
+    bowlFirstGames,
+    batFirstWins,
+    bowlFirstWins;
 
   if (grade === 'All') {
     totalWins = data.filter((item) => item.result === 'Won');
     homeGames = data.filter((item) => item.home_game);
     awayGames = data.filter((item) => !item.home_game);
+    batFirstGames = data.filter((item) => item.toss === 'Bat first');
+    bowlFirstGames = data.filter((item) => item.toss === 'Bowled first');
   } else {
     totalWins = data.filter((item) => item.result === 'Won' && item.team === grade);
     homeGames = data.filter((item) => item.home_game && item.team === grade);
     awayGames = data.filter((item) => !item.home_game && item.team === grade);
+    batFirstGames = data.filter((item) => item.toss === 'Bat first' && item.team === grade);
+    bowlFirstGames = data.filter((item) => item.toss === 'Bowled first' && item.team === grade);
   }
   homeWins = homeGames.filter((item) => item.result === 'Won');
   awayWins = awayGames.filter((item) => item.result === 'Won');
+  batFirstWins = batFirstGames.filter((item) => item.result === 'Won');
+  bowlFirstWins = bowlFirstGames.filter((item) => item.result === 'Won');
 
   return {
     totalWins: totalWins.length,
@@ -53,5 +70,39 @@ export const getWinsStats = (data: TeamData[], grade: string) => {
     awayGames: awayGames.length,
     homeWins: homeWins.length,
     awayWins: awayWins.length,
+    batFirstGames: batFirstGames.length,
+    bowlFirstGames: bowlFirstGames.length,
+    batFirstWins: batFirstWins.length,
+    bowlFirstWins: bowlFirstWins.length,
   };
+};
+
+const getMonthName = (data: number) => {
+  switch (data) {
+    case 0:
+      return 'January';
+    case 1:
+      return 'February';
+    case 2:
+      return 'March';
+    case 10:
+      return 'November';
+    case 11:
+      return 'December';
+  }
+};
+
+export const getUniqueMonths = (data: TeamData[]): string[] => {
+  let dates: string[] = [];
+  data.forEach((match) => dates.push(match.date_played));
+  console.log(dates);
+  let parsedDates: any[] = [];
+  dates.forEach((matchDate) => {
+    parsedDates.push(moment(matchDate).month());
+  });
+  console.log(parsedDates);
+  let uniqMonthNumbers = _.uniq(parsedDates);
+  let months: string[] = [];
+  uniqMonthNumbers.forEach((month) => months.push(getMonthName(month)));
+  return months;
 };
