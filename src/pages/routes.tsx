@@ -5,6 +5,7 @@ import Layout from '../layout/Layout';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Container from '../components/Container/Container';
 import { MetricContainer } from '../components/MetricContainer/MetricContainer';
+import MetricCard from '../components/MetricCard';
 
 import TeamWinRate from './TeamWinRate';
 
@@ -15,10 +16,10 @@ function Routes(): JSX.Element {
         <Sidebar />
         <Container>
           <MetricContainer>
-            <div>Total Teams 4</div>
-            <div>Teams in Finals 3</div>
-            <div>Teams in Grand Finals 2</div>
-            <div>Premierships 1</div>
+            <MetricCard title="Total Teams" value={4} />
+            <MetricCard title="Teams in Finals" value={3} />
+            <MetricCard title="Teams in Grand Finals" value={2} />
+            <MetricCard title="Premierships" value={1} />
           </MetricContainer>
           <Switch>
             <Route path="/" component={TeamWinRate} />
