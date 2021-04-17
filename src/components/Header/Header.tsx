@@ -9,7 +9,14 @@ type Props = {
 const Header: FunctionComponent<Props> = ({ children }) => {
   const HeaderContainer = styled.div`
     h1 {
-      color: #80b918;
+      color: #05668d;
+      font-family: 'Bitter', serif;
+      padding: 10px;
+
+      small {
+        font-weight: 500;
+        font-style: italic;
+      }
     }
   `;
   return <HeaderContainer>{children}</HeaderContainer>;

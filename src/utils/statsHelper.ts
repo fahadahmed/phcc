@@ -1,5 +1,5 @@
 import moment from 'moment';
-import _, { uniq } from 'lodash';
+import _ from 'lodash';
 
 import { TeamData } from '../models/TeamData';
 
@@ -95,14 +95,13 @@ const getMonthName = (data: number) => {
 export const getUniqueMonths = (data: TeamData[]): string[] => {
   let dates: string[] = [];
   data.forEach((match) => dates.push(match.date_played));
-  console.log(dates);
   let parsedDates: any[] = [];
   dates.forEach((matchDate) => {
     parsedDates.push(moment(matchDate).month());
   });
-  console.log(parsedDates);
   let uniqMonthNumbers = _.uniq(parsedDates);
   let months: string[] = [];
   uniqMonthNumbers.forEach((month) => months.push(getMonthName(month)));
+  console.log(months);
   return months;
 };

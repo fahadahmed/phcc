@@ -8,8 +8,9 @@ type Props = {
 
 const Container: FunctionComponent<Props> = ({ children }) => {
   const Content = styled.div`
-    padding: 10px;
-    font-family: 'Arial', sans-serif;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-gap: 10px;
   `;
   return <Content>{children}</Content>;
 };
