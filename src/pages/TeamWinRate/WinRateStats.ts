@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { TeamData } from '../../models/TeamData';
 import { getTotalGames, getTotalWins } from '../../utils/statsHelper';
 
@@ -6,12 +5,39 @@ type TeamObject = {
   team: string;
   winRate: number;
   winRateColor: string;
-}
+};
 
+export const calculateHomeStats = (data: TeamData[]) => {
+  const homeGames = data.filter((item) => item.home_game);
+  const homeWins = homeGames.filter((item) => item.result === 'Won');
+  const winRate = parseFloat(((homeWins.length / homeGames.length) * 100).toFixed(2));
+  return winRate;
+};
+
+export const calculateAwayStats = (data: TeamData[]) => {
+  const homeGames = data.filter((item) => !item.home_game);
+  const homeWins = homeGames.filter((item) => item.result === 'Won');
+  const winRate = parseFloat(((homeWins.length / homeGames.length) * 100).toFixed(2));
+  return winRate;
+};
+
+export const calculateBatFirstStats = (data: TeamData[]) => {
+  const games = data.filter((item) => item.toss === 'Bat first');
+  const wins = games.filter((item) => item.result === 'Won');
+  const winRate = parseFloat(((wins.length / games.length) * 100).toFixed(2));
+  return winRate;
+};
+
+export const calculateBowlFirstStats = (data: TeamData[]) => {
+  const games = data.filter((item) => item.toss === 'Bowled first');
+  const wins = games.filter((item) => item.result === 'Won');
+  const winRate = parseFloat(((wins.length / games.length) * 100).toFixed(2));
+  return winRate;
+};
 
 export const calculateStats = (data: TeamData[], selectedMetric: string, teams: string[]) => {
   let teamData: TeamObject[] = [];
-  if(selectedMetric === 'overall') {
+  if (selectedMetric === 'overall') {
     teams.map((team) => {
       let totalGames = getTotalGames(data, team);
       let totalWins = getTotalWins(data, team);
@@ -19,9 +45,45 @@ export const calculateStats = (data: TeamData[], selectedMetric: string, teams: 
       teamData.push({
         team,
         winRate,
-        winRateColor: 'hsl(197, 93%, 29%)'
+        winRateColor: 'hsl(197, 93%, 29%)',
+      });
+    });
+  }
+
+  if (selectedMetric === 'home' || selectedMetric === 'away') {
+    teams.map((team) => {
+      let winRate;
+      let teamStats = data.filter((item) => item.team === team);
+      console.log(teamStats);
+      if (selectedMetric === 'home') {
+        winRate = calculateHomeStats(teamStats);
+      } else {
+        winRate = calculateAwayStats(teamStats);
+      }
+      teamData.push({
+        team,
+        winRate,
+        winRateColor: 'hsl(197, 93%, 29%)',
+      });
+    });
+  }
+
+  if (selectedMetric === 'bat' || selectedMetric === 'bowl') {
+    teams.map((team) => {
+      let winRate;
+      let teamStats = data.filter((item) => item.team === team);
+      console.log(teamStats);
+      if (selectedMetric === 'bat') {
+        winRate = calculateBatFirstStats(teamStats);
+      } else {
+        winRate = calculateBowlFirstStats(teamStats);
+      }
+      teamData.push({
+        team,
+        winRate,
+        winRateColor: 'hsl(197, 93%, 29%)',
       });
     });
   }
   return teamData;
-}
+};

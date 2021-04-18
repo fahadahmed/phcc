@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 
 import Header from '../../components/Header/Header';
@@ -8,14 +9,14 @@ import { AppContext } from '../../components/AppProvider/AppContext';
 import { calculateStats } from './WinRateStats';
 
 const metricOptions = [
-  { metric: "overall", label: "Overall" },
-  { metric: "home", label: "Home Games" },
-  { metric: "away", label: "Away Games" },
-  { metric: "bat", label: "Batting First" },
-  { metric: "bowl", label: "Bowling First" },
-]
+  { metric: 'overall', label: 'Overall' },
+  { metric: 'home', label: 'Home Games' },
+  { metric: 'away', label: 'Away Games' },
+  { metric: 'bat', label: 'Batting First' },
+  { metric: 'bowl', label: 'Bowling First' },
+];
 function TeamWinRate(): JSX.Element {
-  const [selectedMetric, setSelectedMetric] = useState("overall");
+  const [selectedMetric, setSelectedMetric] = useState('overall');
   const { teamData, teams } = useContext(AppContext);
   const [data, setData] = useState([]);
 
@@ -38,7 +39,7 @@ function TeamWinRate(): JSX.Element {
     const result = calculateStats(teamData, selectedMetric, teams);
     console.log(result);
     setData(result);
-  },[selectedMetric, teamData]);
+  }, [selectedMetric, teamData]);
 
   return (
     <div style={{ padding: '10px' }}>
@@ -55,7 +56,9 @@ function TeamWinRate(): JSX.Element {
             onChange={(e) => selectMetric(e.target.value)}
           >
             {metricOptions.map((option) => (
-              <option value={option.metric} key={option.metric}>{option.label}</option>
+              <option value={option.metric} key={option.metric}>
+                {option.label}
+              </option>
             ))}
           </select>
           {selectedMetric}

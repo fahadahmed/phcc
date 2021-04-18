@@ -1,17 +1,17 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
+import PropTypes from 'prop-types';
 
 const WinRateChart = ({ data }) => (
   <ResponsiveBar
     data={data}
-    keys={["winRate"]}
+    keys={['winRate']}
     indexBy="team"
     margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
     padding={0.3}
     valueScale={{ type: 'linear' }}
     indexScale={{ type: 'band', round: true }}
-    colors={["#05668d"]}
-    
+    colors={['#05668d']}
     borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
     axisTop={null}
     axisRight={null}
@@ -40,5 +40,9 @@ const WinRateChart = ({ data }) => (
     motionDamping={15}
   />
 );
+
+WinRateChart.propTypes = {
+  data: PropTypes.array,
+};
 
 export default WinRateChart;
