@@ -54,7 +54,6 @@ export const calculateStats = (data: TeamData[], selectedMetric: string, teams: 
     teams.map((team) => {
       let winRate;
       let teamStats = data.filter((item) => item.team === team);
-      console.log(teamStats);
       if (selectedMetric === 'home') {
         winRate = calculateHomeStats(teamStats);
       } else {
@@ -72,7 +71,6 @@ export const calculateStats = (data: TeamData[], selectedMetric: string, teams: 
     teams.map((team) => {
       let winRate;
       let teamStats = data.filter((item) => item.team === team);
-      console.log(teamStats);
       if (selectedMetric === 'bat') {
         winRate = calculateBatFirstStats(teamStats);
       } else {

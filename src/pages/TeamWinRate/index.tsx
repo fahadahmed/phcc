@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 
 import Header from '../../components/Header/Header';
 import Paragraph from '../../components/Paragraph/Paragraph';
+import Dropdown from '../../components/Dropdown';
 import WinRateChart from './WinRateChart';
 
 import { AppContext } from '../../components/AppProvider/AppContext';
@@ -50,7 +51,7 @@ function TeamWinRate(): JSX.Element {
       {teamData && (
         <>
           {getCommentary()}
-          <select
+          <Dropdown
             value={selectedMetric}
             onBlur={(e) => selectMetric(e.target.value)}
             onChange={(e) => selectMetric(e.target.value)}
@@ -60,9 +61,8 @@ function TeamWinRate(): JSX.Element {
                 {option.label}
               </option>
             ))}
-          </select>
-          {selectedMetric}
-          <div style={{ height: '400px' }}>
+          </Dropdown>
+          <div style={{ height: '600px' }}>
             <WinRateChart data={data} />
           </div>
         </>
