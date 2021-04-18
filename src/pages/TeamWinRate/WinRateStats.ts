@@ -45,7 +45,7 @@ export const calculateStats = (data: TeamData[], selectedMetric: string, teams: 
       teamData.push({
         team,
         winRate,
-        winRateColor: 'hsl(197, 93%, 29%)',
+        winRateColor: winRate < 50 ? '	hsl(12, 76%, 61%)' : 'hsl(197, 93%, 29%)',
       });
     });
   }
@@ -62,7 +62,7 @@ export const calculateStats = (data: TeamData[], selectedMetric: string, teams: 
       teamData.push({
         team,
         winRate,
-        winRateColor: 'hsl(197, 93%, 29%)',
+        winRateColor: winRate < 50 ? '	hsl(12, 76%, 61%)' : 'hsl(197, 93%, 29%)',
       });
     });
   }
@@ -79,7 +79,7 @@ export const calculateStats = (data: TeamData[], selectedMetric: string, teams: 
       teamData.push({
         team,
         winRate,
-        winRateColor: 'hsl(197, 93%, 29%)',
+        winRateColor: winRate < 50 ? '	hsl(12, 76%, 61%)' : 'hsl(197, 93%, 29%)',
       });
     });
   }

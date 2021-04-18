@@ -2,6 +2,8 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
+const getBarColor = (bar: any) => bar.data.winRateColor;
+
 const WinRateChart = ({ data }) => (
   <ResponsiveBar
     data={data}
@@ -11,8 +13,8 @@ const WinRateChart = ({ data }) => (
     padding={0.3}
     valueScale={{ type: 'linear' }}
     indexScale={{ type: 'band', round: true }}
-    colors={['#05668d']}
-    borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+    colors={getBarColor}
+    borderColor="#00a896"
     axisTop={null}
     axisRight={null}
     axisBottom={{
