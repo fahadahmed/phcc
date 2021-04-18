@@ -105,3 +105,10 @@ export const getUniqueMonths = (data: TeamData[]): string[] => {
   console.log(months);
   return months;
 };
+
+export const getTeams = (data:TeamData[]) => {
+  let teams: string[] = [];
+  data.forEach((match: TeamData) => teams.push(match.team));
+  let uniqTeamNames = _.uniq(teams);
+  return uniqTeamNames;
+};

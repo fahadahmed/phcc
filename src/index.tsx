@@ -12,6 +12,7 @@ ReactDOM.render(
         body {
           padding: 0;
           margin: 0;
+          background: #f0f3bd;
         }
       `}
     />
