@@ -10,23 +10,18 @@ type Props = {
 };
 
 export const AppProvider: FunctionComponent<Props> = ({ children }) => {
-
   const [teamData, setTeamData] = useState(null);
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
     const result = PHCCApiClient.fetchTeamOverallDetails();
-    console.log("fetching the team data");
+    console.log('fetching the team data');
     const teamResult = getTeams(result);
     setTeams(teamResult);
     setTeamData(result);
-  },[]);
+  }, []);
 
-  return(
-    <AppContext.Provider value={{teamData, teams}}>
-      {children}
-    </AppContext.Provider>
-  )
+  return <AppContext.Provider value={{ teamData, teams }}>{children}</AppContext.Provider>;
 };
 
 AppProvider.propTypes = {
