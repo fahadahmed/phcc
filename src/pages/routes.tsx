@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Layout from '../layout/Layout';
 import Sidebar from '../components/Sidebar/Sidebar';
@@ -25,7 +25,12 @@ function Routes(): JSX.Element {
               <MetricCard title="Premierships" value={1} />
             </MetricContainer>
             <Switch>
-              <Route path="/" component={TeamWinRate} />
+              <Route path="/win-rate" component={TeamWinRate} />
+              <Route path="/team-performance" render={() => <h1>Team Performance</h1>} />
+              <Route path="/player-performance" render={() => <h1>Player Performance</h1>} />
+              <Route path="/match-reports" render={() => <h1>Match Reports</h1>} />
+              <Route path="/financial-report" render={() => <h1>Financial Report</h1>} />
+              <Redirect from="/" to="/win-rate" />
             </Switch>
           </Container>
         </Layout>
