@@ -41,7 +41,7 @@ function Sidebar(): JSX.Element {
           </h1>
         </Header>
         <Navigation>
-          <Nav to="/">Win Rate</Nav>
+          <Nav to="/win-rate">Win Rate</Nav>
           <Nav to="/team-performance">Teams Monthly Performance</Nav>
           <Nav to="/player-performance">Players Performance</Nav>
           <Nav to="/match-reports">Match Reports</Nav>
