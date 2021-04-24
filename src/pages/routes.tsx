@@ -10,6 +10,7 @@ import MetricCard from '../components/MetricCard';
 import { AppProvider } from '../components/AppProvider/AppContext';
 
 import TeamWinRate from './TeamWinRate';
+import TeamPerformance from './TeamPerformance';
 
 function Routes(): JSX.Element {
   return (
@@ -26,7 +27,7 @@ function Routes(): JSX.Element {
             </MetricContainer>
             <Switch>
               <Route path="/win-rate" component={TeamWinRate} />
-              <Route path="/team-performance" render={() => <h1>Team Performance</h1>} />
+              <Route path="/team-performance" component={TeamPerformance} />
               <Route path="/player-performance" render={() => <h1>Player Performance</h1>} />
               <Route path="/match-reports" render={() => <h1>Match Reports</h1>} />
               <Route path="/financial-report" render={() => <h1>Financial Report</h1>} />
