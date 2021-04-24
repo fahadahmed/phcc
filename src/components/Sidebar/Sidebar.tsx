@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 import Header from '../Header/Header';
+import MenuIcon from '../../images/menu.svg';
 
 function Sidebar(): JSX.Element {
   const [showMenu, setShowMenu] = useState(false);
@@ -37,7 +38,6 @@ function Sidebar(): JSX.Element {
   `;
   const MenuButton = styled.div`
     display: none;
-    background: white;
     @media (max-width: 420px) {
       display: block;
       align-content: center;
@@ -62,7 +62,9 @@ function Sidebar(): JSX.Element {
               <small>Season 2020/21</small>
             </h1>
           </Header>
-          <MenuButton onClick={() => setShowMenu(!showMenu)}>Show</MenuButton>
+          <MenuButton onClick={() => setShowMenu(!showMenu)}>
+            <img src={MenuIcon} alt="" height="40" width="30" />
+          </MenuButton>
         </HeaderContainer>
         <Navigation>
           <Nav to="/win-rate">Win Rate</Nav>
