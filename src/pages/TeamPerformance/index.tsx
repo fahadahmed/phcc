@@ -1,5 +1,5 @@
-import React from 'react';
-import Header from '../../components/Header/Header';
+import React, { useState, useEffect, useContext } from 'react';
+import Header from '@components/Header/Header';
 
 function TeamPerformance(): JSX.Element {
   return (

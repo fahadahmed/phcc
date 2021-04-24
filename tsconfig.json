@@ -8,9 +8,15 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "public",
-    "baseUrl": ".",
+    "baseUrl": "src",
     "jsx": "react",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "@components/*": ["components/*"],
+      "@images/*": ["images/*"],
+      "@models/*": ["models/*"],
+      "@utils/*": ["utils/*"],
+    },
   },
   "include": [
     "src/**/*"

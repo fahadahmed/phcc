@@ -1,5 +1,5 @@
-import { TeamData } from '../../models/TeamData';
-import { getTotalGames, getTotalWins } from '../../utils/statsHelper';
+import { TeamData } from '@models/TeamData';
+import { getTotalGames, getTotalWins } from '@utils/statsHelper';
 
 type TeamObject = {
   team: string;

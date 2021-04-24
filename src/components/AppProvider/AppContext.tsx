@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FunctionComponent, ReactNode } from 'react';
 import PropTypes from 'prop-types';
-import PHCCApiClient from '../../utils/ApiClient';
-import { getTeams } from '../../utils/statsHelper';
+import PHCCApiClient from '@utils/ApiClient';
+import { getTeams } from '@utils/statsHelper';
 
 export const AppContext = React.createContext(null);
 

@@ -38,7 +38,6 @@ function TeamWinRate(): JSX.Element {
 
   useEffect(() => {
     const result = calculateStats(teamData, selectedMetric, teams);
-    console.log(result);
     setData(result);
   }, [selectedMetric, teamData]);
 
