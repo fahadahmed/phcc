@@ -11,7 +11,6 @@ const Header: FunctionComponent<Props> = ({ children }) => {
     h1 {
       color: #05668d;
       font-family: 'Bitter', serif;
-      padding: 10px;
 
       small {
         font-weight: 500;

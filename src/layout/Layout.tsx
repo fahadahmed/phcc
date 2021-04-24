@@ -13,6 +13,11 @@ export const Layout: FunctionComponent<Props> = ({ children }) => {
     grid-gap: 20px;
     height: 100vh;
     background: #f0f3bd;
+
+    @media (max-width: 420px) {
+      grid-template-columns: 1fr;
+      width: 100%;
+    }
   `;
   return <AppContainer>{children}</AppContainer>;
 };
