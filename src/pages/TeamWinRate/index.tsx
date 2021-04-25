@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from 'react';
 
-import Header from '../../components/Header/Header';
-import Paragraph from '../../components/Paragraph/Paragraph';
-import Dropdown from '../../components/Dropdown';
+import Header from '@components/Header/Header';
+import Paragraph from '@components/Paragraph/Paragraph';
+import Dropdown from '@components/Dropdown';
 import WinRateChart from './WinRateChart';
 
-import { AppContext } from '../../components/AppProvider/AppContext';
+import { AppContext } from '@components/AppProvider/AppContext';
 import { calculateStats } from './WinRateStats';
 
 const metricOptions = [

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 import Header from '../Header/Header';
-import MenuIcon from '@images/menu.svg';
+import MenuIcon from '../../images/menu.svg';
 
 function Sidebar(): JSX.Element {
   const [showMenu, setShowMenu] = useState(false);
