@@ -40,6 +40,7 @@
     "@emotion/styled": "^11.1.5",
     "@nivo/bar": "^0.67.0",
     "@nivo/core": "^0.67.0",
+    "@nivo/heatmap": "^0.68.0",
     "@nivo/tooltip": "^0.67.0",
     "@types/jest": "^26.0.22",
     "@types/lodash": "^4.14.168",

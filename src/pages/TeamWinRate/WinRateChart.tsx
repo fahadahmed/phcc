@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import PropTypes from 'prop-types';
 
 const getBarColor = (bar: any) => bar.data.winRateColor;
 
-const WinRateChart = ({ data }) => (
+type Props = {
+  data: Array<any>;
+};
+
+const WinRateChart: FC<Props> = ({ data }) => (
   <ResponsiveBar
     data={data}
     keys={['winRate']}

@@ -2,6 +2,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 import { TeamData } from '../models/TeamData';
+import { string } from 'prop-types';
 
 export const getTotalGames = (data: TeamData[], grade: string): number => {
   if (grade === 'All') return data.length;
@@ -111,4 +112,46 @@ export const getTeams = (data: TeamData[]) => {
   data.forEach((match: TeamData) => teams.push(match.team));
   let uniqTeamNames = _.uniq(teams);
   return uniqTeamNames;
+};
+
+export const calculatePerformanceStats = (data: TeamData[], teams: string[], months: string[]) => {
+  console.log(data, teams, months);
+
+  //let statsByMonth = [];
+  // get the games played for each grade on a monthly basis
+  teams.map((team) => {
+    let gradeMatches = data.filter((match) => match.team === team);
+    getMonthlyBreakdown(gradeMatches, months, team);
+  });
+  // push those stats in an array
+};
+
+interface monthStats {
+  team: string;
+  month: string;
+  winRate: number;
+}
+
+const getMonthlyBreakdown = (matches: TeamData[], months: string[], team: string) => {
+  let stats: monthStats[] = [];
+  months.map((month) => {
+    let monthMatchPlayed = 0;
+    let matchesWon = 0;
+    matches.map((match) => {
+      const matchMonth = getMonthName(moment(match.date_played).month());
+      if (month === matchMonth) {
+        monthMatchPlayed += 1;
+        if (match.result === 'Won') {
+          matchesWon += 1;
+        }
+      }
+    });
+    const winRate = parseFloat(((matchesWon / monthMatchPlayed) * 100).toFixed(1));
+    stats.push({
+      team,
+      month,
+      winRate,
+    });
+  });
+  console.log(stats);
 };
