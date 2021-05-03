@@ -16,7 +16,6 @@ export const AppProvider: FunctionComponent<Props> = ({ children }) => {
 
   useEffect(() => {
     const result = PHCCApiClient.fetchTeamOverallDetails();
-    console.log('fetching the team data');
     const teamResult = getTeams(result);
     const monthsResult = getUniqueMonths(result);
     setTeams(teamResult);

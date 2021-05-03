@@ -103,7 +103,6 @@ export const getUniqueMonths = (data: TeamData[]): string[] => {
   let uniqMonthNumbers = _.uniq(parsedDates);
   let months: string[] = [];
   uniqMonthNumbers.forEach((month) => months.push(getMonthName(month)));
-  console.log(months);
   return months;
 };
 
@@ -115,8 +114,6 @@ export const getTeams = (data: TeamData[]) => {
 };
 
 export const calculatePerformanceStats = (data: TeamData[], teams: string[], months: string[]) => {
-  console.log(data, teams, months);
-
   //let statsByMonth = [];
   // get the games played for each grade on a monthly basis
   teams.map((team) => {
@@ -130,6 +127,7 @@ interface monthStats {
   team: string;
   month: string;
   winRate: number;
+  averageRunsScored: number;
 }
 
 const getMonthlyBreakdown = (matches: TeamData[], months: string[], team: string) => {
@@ -137,20 +135,24 @@ const getMonthlyBreakdown = (matches: TeamData[], months: string[], team: string
   months.map((month) => {
     let monthMatchPlayed = 0;
     let matchesWon = 0;
+    let runsScored = 0;
     matches.map((match) => {
       const matchMonth = getMonthName(moment(match.date_played).month());
       if (month === matchMonth) {
         monthMatchPlayed += 1;
+        runsScored += match.team_score;
         if (match.result === 'Won') {
           matchesWon += 1;
         }
       }
     });
     const winRate = parseFloat(((matchesWon / monthMatchPlayed) * 100).toFixed(1));
+    const averageRunsScored = parseFloat((runsScored / monthMatchPlayed).toFixed(0));
     stats.push({
       team,
       month,
       winRate,
+      averageRunsScored,
     });
   });
   console.log(stats);

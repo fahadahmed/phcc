@@ -6,7 +6,6 @@ import TeamPerformanceChart from './TeamPerformanceChart';
 
 function TeamPerformance(): JSX.Element {
   const { teamData, teams } = useContext(AppContext);
-  console.log(teamData, teams);
   return (
     <div style={{ padding: '10px' }}>
       <Header>
