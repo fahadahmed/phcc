@@ -1,33 +1,47 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { ResponsiveHeatMap } from '@nivo/heatmap';
 
-import { AppContext } from '@components/AppProvider/AppContext';
-import { calculatePerformanceStats } from '@utils/statsHelper';
+const data = [
+  {
+    country: 'B Grade',
+    November: 100,
+    December: 66.7,
+    January: 75,
+    February: 25,
+    March: 33.3,
+  },
+  {
+    country: 'C Grade',
+    November: 100,
+    December: 66.7,
+    January: 75,
+    February: 50,
+    March: 25,
+  },
+  {
+    country: 'C Sunday',
+    November: 0,
+    December: 66.7,
+    January: 50,
+    February: 50,
+    March: 0,
+  },
+  {
+    country: 'C North',
+    November: 33.3,
+    December: 100,
+    January: 75,
+    February: 50,
+    March: 75,
+  },
+];
 
 const TeamPerformanceChart = () => {
-  const { teamData, months, teams } = useContext(AppContext);
-  useEffect(() => {
-    calculatePerformanceStats(teamData, teams, months);
-  }, [months, teamData, teams]);
-
   return (
     <>
-      <p>The chart is here</p>
-      {/* <ResponsiveHeatMap
+      <ResponsiveHeatMap
         data={data}
-        keys={[
-          'hot dog',
-          'burger',
-          'sandwich',
-          'kebab',
-          'fries',
-          'donut',
-          'junk',
-          'sushi',
-          'ramen',
-          'curry',
-          'udon',
-        ]}
+        keys={['November', 'December', 'January', 'February', 'March']}
         indexBy="country"
         margin={{ top: 100, right: 60, bottom: 60, left: 60 }}
         forceSquare={true}
@@ -63,15 +77,15 @@ const TeamPerformanceChart = () => {
             lineWidth: 4,
             spacing: 7,
           },
-        ]}
-        fill={[{ id: 'lines' }]}
-        //animate={true}
+        ]} */
+        // fill={[{ id: 'lines' }]}
+        animate={true}
         // motionConfig="wobbly"
         motionStiffness={80}
         motionDamping={9}
         hoverTarget="cell"
         cellHoverOthersOpacity={0.25}
-      /> */}
+      />
     </>
   );
 };

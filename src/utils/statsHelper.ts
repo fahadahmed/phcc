@@ -2,7 +2,6 @@ import moment from 'moment';
 import _ from 'lodash';
 
 import { TeamData } from '../models/TeamData';
-import { string } from 'prop-types';
 
 export const getTotalGames = (data: TeamData[], grade: string): number => {
   if (grade === 'All') return data.length;
@@ -114,13 +113,13 @@ export const getTeams = (data: TeamData[]) => {
 };
 
 export const calculatePerformanceStats = (data: TeamData[], teams: string[], months: string[]) => {
-  //let statsByMonth = [];
-  // get the games played for each grade on a monthly basis
+  let statsByMonth: monthStats[][] = [];
   teams.map((team) => {
     let gradeMatches = data.filter((match) => match.team === team);
-    getMonthlyBreakdown(gradeMatches, months, team);
+    const teamStats = getMonthlyBreakdown(gradeMatches, months, team);
+    statsByMonth.push(teamStats);
   });
-  // push those stats in an array
+  return statsByMonth;
 };
 
 interface monthStats {
@@ -155,5 +154,5 @@ const getMonthlyBreakdown = (matches: TeamData[], months: string[], team: string
       averageRunsScored,
     });
   });
-  console.log(stats);
+  return stats;
 };
